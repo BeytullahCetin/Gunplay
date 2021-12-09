@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mob_Movement : MonoBehaviour
+public class MobMovement : MonoBehaviour
 {
     [SerializeField] MobSettings mobSetting;
     Rigidbody mobRb;

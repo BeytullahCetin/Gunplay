@@ -39,4 +39,5 @@ public class InputManager : MonoBehaviour
     {
         ShootButton = Input.GetAxis("Fire1");
     }
+
 }

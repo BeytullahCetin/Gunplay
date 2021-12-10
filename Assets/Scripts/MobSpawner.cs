@@ -6,8 +6,9 @@ public class MobSpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] mobsToSpawn;
     [SerializeField] GameObject[] SpawnPoints;
+    [SerializeField] GameObject MobContainer;
+    [SerializeField] Transform target;
     [SerializeField] MobSpawnerSettings mobSpawnerSetting;
-    int numberOfMobs;
 
     void Start()
     {
@@ -19,10 +20,9 @@ public class MobSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSecondsRealtime(mobSpawnerSetting.SpawnRate);
-            if (numberOfMobs < mobSpawnerSetting.MaxNumberOfMobs)
+            if (MobContainer.transform.childCount < mobSpawnerSetting.MaxNumberOfMobs)
             {
-                Instantiate(mobsToSpawn[Random.Range(0, mobsToSpawn.Length)],SpawnPoints[Random.Range(0,SpawnPoints.Length)].gameObject.transform);
-                numberOfMobs++;
+                Instantiate(mobsToSpawn[Random.Range(0, mobsToSpawn.Length)], SpawnPoints[Random.Range(0,SpawnPoints.Length)].gameObject.transform.position, Quaternion.identity,  MobContainer.transform);
             }
         }
     }

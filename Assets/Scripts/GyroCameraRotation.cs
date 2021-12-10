@@ -6,6 +6,6 @@ public class GyroCameraRotation : MonoBehaviour
 {
     void Update()
     {
-        GyroManager.Instance.getMainCamera.transform.localRotation = GyroManager.Instance.getCurrentRotation;
+        transform.localRotation = GyroManager.Instance.CurrentRotation;
     }
 }

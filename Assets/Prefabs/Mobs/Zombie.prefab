@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 4738632287748423228}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,6 +437,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobSetting: {fileID: 11400000, guid: 60621b0a0e3eb65438c15ec723d67e37, type: 2}
+  lookRotationDamping: 2
+  bloodEffects:
+  - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
+  - {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
+  - {fileID: 1000010191825552, guid: 83e55d3418297934fab882559d009285, type: 3}
 --- !u!1 &852080624940746827
 GameObject:
   m_ObjectHideFlags: 0

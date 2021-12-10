@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Mob Setting
   m_EditorClassIdentifier: 
   speed: 2
+  health: 100

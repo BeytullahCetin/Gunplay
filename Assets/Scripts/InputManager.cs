@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager instance;
     public static InputManager Instance { get; private set; }
-    public float MouseHorizontal { get; private set; }
-    public float MouseVertical { get; private set; }
-    public float ShootButton{ get; private set;}
+    [SerializeField] float _mouseHorizontal;
+    [SerializeField] float _mouseVertical;
+    public float MouseHorizontal { get { return _mouseHorizontal; } }
+    public float MouseVertical { get { return _mouseVertical; } }
+    public bool ShootButton { get; private set; }
 
     private void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -28,16 +30,15 @@ public class InputManager : MonoBehaviour
         MouseSlideInput();
         ShootButtonInput();
     }
-
     void MouseSlideInput()
     {
-        MouseHorizontal = Input.GetAxis("Mouse X");
-        MouseVertical = -Input.GetAxis("Mouse Y");
+        _mouseHorizontal = Input.GetAxis("Mouse X");
+        _mouseVertical = -Input.GetAxis("Mouse Y");
     }
 
     void ShootButtonInput()
     {
-        ShootButton = Input.GetAxis("Fire1");
+        ShootButton = Input.GetButton("Fire1");
     }
 
 }

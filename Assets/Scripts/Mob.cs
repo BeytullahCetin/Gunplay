@@ -8,34 +8,49 @@ public class Mob : MonoBehaviour
     [SerializeField] MobSettings mobSetting;
     [SerializeField] int lookRotationDamping;
     float health;
+    bool isDead;
+    [SerializeField] float destroyDelay = 3.5f;
 
     [Header("Effects")]
     [SerializeField] GameObject[] bloodEffects;
 
     [Header("Movement")]
-    Transform target;
     Vector3 movement;
+
+    [Header("Dependencies")]
+    Animator zombieAnim;
+    Transform target;
     Rigidbody mobRb;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         mobRb = GetComponent<Rigidbody>();
-
+        zombieAnim = GetComponent<Animator>();
         health = mobSetting.Health;
+        isDead = false;
     }
 
     void Update()
     {
-        movement = (target.position - transform.position).normalized;
-        movement.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(movement);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * lookRotationDamping);
+        if (!isDead)
+        {
+            movement = (target.position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(movement);
+            rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * lookRotationDamping);
+        }
     }
 
     void FixedUpdate()
     {
-        mobRb.velocity = movement / 5 * mobSetting.Speed;
+        if (!isDead)
+        {
+            Vector3 vel = mobRb.velocity;
+            vel.x = movement.x / 5 * mobSetting.Speed;
+            vel.z = movement.z / 5 * mobSetting.Speed;
+            mobRb.velocity = vel;
+        }
     }
 
     public void TakeDamage(Vector3 point, Quaternion rotation, float dmg)
@@ -55,6 +70,8 @@ public class Mob : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        zombieAnim.SetTrigger("die" + Random.Range(0, 2));
+        Destroy(gameObject, destroyDelay);
+        isDead = true;
     }
 }

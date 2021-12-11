@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mob : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] MobSettings mobSetting;
     [SerializeField] int lookRotationDamping;
+    [SerializeField] Slider healthBar;
     Vector3 distance;
     float health;
     bool isDead;
@@ -80,6 +81,7 @@ public class Mob : MonoBehaviour
     {
         CreateBloodEffect(point, rotation);
         health -= dmg;
+        healthBar.value = health;
         if (health < 0)
             Die();
     }
@@ -97,5 +99,6 @@ public class Mob : MonoBehaviour
         Destroy(gameObject, destroyDelay);
         isDead = true;
         FindObjectOfType<GameManager>().AddScore(10);
+        healthBar.gameObject.SetActive(false);
     }
 }

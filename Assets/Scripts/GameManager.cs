@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     int score;
     [SerializeField] TextMeshProUGUI endGameScore;
     [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] TextMeshProUGUI scoreText;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int points)
     {
         score += points;
+        scoreText.SetText(score.ToString());
     }
 
     public void GameOver()

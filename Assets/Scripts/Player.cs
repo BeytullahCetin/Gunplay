@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float health = 100;
+    [SerializeField] Slider healthBar;
     bool isDead;
 
     void Start() {
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
+        healthBar.value = health;
         if (health < 0)
             Die();
     }

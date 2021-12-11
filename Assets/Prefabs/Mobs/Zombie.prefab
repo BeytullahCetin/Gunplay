@@ -438,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobSetting: {fileID: 11400000, guid: 60621b0a0e3eb65438c15ec723d67e37, type: 2}
   lookRotationDamping: 2
+  attackDistance: 3
   destroyDelay: 3.5
   bloodEffects:
   - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}

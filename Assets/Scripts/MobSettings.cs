@@ -9,4 +9,7 @@ public class MobSettings : ScriptableObject
 
     [SerializeField] int health;
     public int Health { get { return health; } }
+
+    [SerializeField] int damageDeal;
+    public int DamageDeal { get { return damageDeal; } }
 }

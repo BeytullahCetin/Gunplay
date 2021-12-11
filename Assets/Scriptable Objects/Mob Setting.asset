@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73fc9b59ec8454ca530c744e986bd2, type: 3}
   m_Name: Mob Setting
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   health: 100
+  damageDeal: 10

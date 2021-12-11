@@ -7,8 +7,11 @@ public class Mob : MonoBehaviour
     [Header("Settings")]
     [SerializeField] MobSettings mobSetting;
     [SerializeField] int lookRotationDamping;
+    Vector3 distance;
     float health;
     bool isDead;
+    bool attacking;
+    [SerializeField] float attackDistance;  
     [SerializeField] float destroyDelay = 3.5f;
 
     [Header("Effects")]
@@ -21,6 +24,7 @@ public class Mob : MonoBehaviour
     Animator zombieAnim;
     Transform target;
     Rigidbody mobRb;
+    Player player;
 
     void Start()
     {
@@ -29,17 +33,36 @@ public class Mob : MonoBehaviour
         zombieAnim = GetComponent<Animator>();
         health = mobSetting.Health;
         isDead = false;
+        attacking = false;
+        player = target.gameObject.GetComponent<Player>();
     }
 
     void Update()
     {
         if (!isDead)
         {
-            movement = (target.position - transform.position).normalized;
+
+            distance = (target.position - transform.position);
+            movement = distance.normalized;
             Quaternion rotation = Quaternion.LookRotation(movement);
             rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, rotation.eulerAngles.z);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * lookRotationDamping);
+
+            if(distance.magnitude < attackDistance){
+                zombieAnim.SetTrigger("attack");
+                if(!attacking)
+                    StartCoroutine(DealDamage(mobSetting.DamageDeal));
+            }
         }
+    }
+
+    IEnumerator DealDamage(int damage){
+        while(!isDead){
+            attacking = true;
+            yield return new WaitForSeconds(2f);
+            player.TakeDamage(damage);
+        }
+        attacking = false;
     }
 
     void FixedUpdate()
@@ -73,5 +96,6 @@ public class Mob : MonoBehaviour
         zombieAnim.SetTrigger("die" + Random.Range(0, 2));
         Destroy(gameObject, destroyDelay);
         isDead = true;
+        FindObjectOfType<GameManager>().AddScore(10);
     }
 }

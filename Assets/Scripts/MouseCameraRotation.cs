@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class MouseCameraRotation : MonoBehaviour
 {
+    Player player;
+
+    void Start()
+    {
+        player = FindObjectOfType<Player>();
+    }
+
     void Update()
     {
-        transform.eulerAngles += new Vector3(InputManager.Instance.MouseVertical, InputManager.Instance.MouseHorizontal,0);
+        if (!player.IsDead)
+            transform.eulerAngles += new Vector3(InputManager.Instance.MouseVertical, InputManager.Instance.MouseHorizontal, 0);
     }
 }

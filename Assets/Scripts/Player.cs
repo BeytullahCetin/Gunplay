@@ -6,8 +6,10 @@ public class Player : MonoBehaviour
     [SerializeField] float health = 100;
     [SerializeField] Slider healthBar;
     bool isDead;
+    public bool IsDead { get { return isDead; } }
 
-    void Start() {
+    void Start()
+    {
         isDead = false;
     }
     public void TakeDamage(float dmg)

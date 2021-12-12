@@ -5,9 +5,10 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] Weapon weapon;
-    [SerializeField] ParticleSystem muzzleFlash;
+    ParticleSystem muzzleFlash;
     GameObject _currentWeapon;
     float nextTimeToFire = 0f;
+    Player player;
 
     void Start()
     {
@@ -17,11 +18,13 @@ public class WeaponController : MonoBehaviour
         _currentWeapon.transform.localRotation = Quaternion.identity;
 
         muzzleFlash = _currentWeapon.GetComponentInChildren<ParticleSystem>();
+        
+        player = FindObjectOfType<Player>();
     }
 
     void Update()
     {
-        if (InputManager.Instance.ShootButton && Time.time >= nextTimeToFire)
+        if (InputManager.Instance.ShootButton && Time.time >= nextTimeToFire && !player.IsDead)
         {
             nextTimeToFire = Time.time + 1f / weapon.RateOfFire;
             Shoot();

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Mob Spawner Setting
   m_EditorClassIdentifier: 
   spawnRate: 2
-  maxNumberOfMobs: 5
+  maxNumberOfMobs: 25

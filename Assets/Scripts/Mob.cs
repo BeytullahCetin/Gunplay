@@ -82,7 +82,7 @@ public class Mob : MonoBehaviour
         CreateBloodEffect(point, rotation);
         health -= dmg;
         healthBar.value = health;
-        if (health < 0)
+        if (health < 0 && !isDead)
             Die();
     }
 

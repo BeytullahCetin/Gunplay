@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: P250
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 3287838402542470643, guid: 1a4539a092ca584478ecf38567b05e33, type: 3}
-  rateOfFire: 10
+  rateOfFire: 3
   damage: 40
   range: 50

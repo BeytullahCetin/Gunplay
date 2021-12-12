@@ -95,7 +95,9 @@ public class Mob : MonoBehaviour
 
     void Die()
     {
-        zombieAnim.SetTrigger("die" + Random.Range(0, 2));
+        string dieTrig = "die" + Random.Range(0, 2).ToString();
+        Debug.Log(dieTrig);
+        zombieAnim.SetTrigger(dieTrig);
         Destroy(gameObject, destroyDelay);
         isDead = true;
         FindObjectOfType<GameManager>().AddScore(10);

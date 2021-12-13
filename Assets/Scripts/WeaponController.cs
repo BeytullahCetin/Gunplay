@@ -37,11 +37,11 @@ public class WeaponController : MonoBehaviour
     void Shoot()
     {
         muzzleFlash.Play();
+        weaponAudio.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(_currentWeapon.transform.position, -_currentWeapon.transform.up, out hit, weapon.Range))
+        if (Physics.Raycast(_currentWeapon.transform.position, -_currentWeapon.transform.up, out hit))
         {
-            weaponAudio.Play();
             Transform switchHit = hit.transform;
             switch (switchHit.tag)
             {

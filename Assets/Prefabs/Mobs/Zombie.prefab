@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 6197055740774742661}
   - component: {fileID: 534460460514457181}
   - component: {fileID: 4738632287748423228}
-  - component: {fileID: 4561038023957812788}
+  - component: {fileID: 5117918830977012260}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -448,7 +448,8 @@ MonoBehaviour:
   - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   - {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
   - {fileID: 1000010191825552, guid: 83e55d3418297934fab882559d009285, type: 3}
---- !u!82 &4561038023957812788
+  hitSound: {fileID: 5117918830977012260}
+--- !u!82 &5117918830977012260
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

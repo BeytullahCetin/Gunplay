@@ -17,7 +17,7 @@ public class Mob : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] GameObject[] bloodEffects;
-    AudioSource hitSound;
+    [SerializeField] AudioSource hitSound;
 
     [Header("Movement")]
     Vector3 movement;
@@ -36,7 +36,6 @@ public class Mob : MonoBehaviour
         health = mobSetting.Health;
         isDead = false;
         attacking = false;
-        hitSound = GetComponent<AudioSource>();
         player = target.gameObject.GetComponent<Player>();
     }
 

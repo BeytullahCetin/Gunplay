@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Weapon weapon;
     ParticleSystem muzzleFlash;
     GameObject _currentWeapon;
+    AudioSource weaponAudio;
     float nextTimeToFire = 0f;
     Player player;
 
@@ -17,8 +18,10 @@ public class WeaponController : MonoBehaviour
         _currentWeapon.transform.localPosition = Vector3.zero;
         _currentWeapon.transform.localRotation = Quaternion.identity;
 
+        weaponAudio = _currentWeapon.GetComponent<AudioSource>();
+
         muzzleFlash = _currentWeapon.GetComponentInChildren<ParticleSystem>();
-        
+
         player = FindObjectOfType<Player>();
     }
 
@@ -38,18 +41,17 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(_currentWeapon.transform.position, -_currentWeapon.transform.up, out hit, weapon.Range))
         {
-            Debug.DrawRay(_currentWeapon.transform.position, -_currentWeapon.transform.up * weapon.Range, Color.green, 4f);
-
+            weaponAudio.Play();
             Transform switchHit = hit.transform;
             switch (switchHit.tag)
             {
                 case "Zombie":
                     switchHit.GetComponent<Mob>().TakeDamage(hit.point, Quaternion.LookRotation(hit.normal), weapon.Damage);
                     break;
-                
+
                 default:
                     Debug.Log(switchHit.name + " Shot!");
-                break;
+                    break;
             }
 
         }

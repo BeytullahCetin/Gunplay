@@ -17,6 +17,7 @@ public class Mob : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] GameObject[] bloodEffects;
+    AudioSource hitSound;
 
     [Header("Movement")]
     Vector3 movement;
@@ -35,6 +36,7 @@ public class Mob : MonoBehaviour
         health = mobSetting.Health;
         isDead = false;
         attacking = false;
+        hitSound = GetComponent<AudioSource>();
         player = target.gameObject.GetComponent<Player>();
     }
 
@@ -79,6 +81,7 @@ public class Mob : MonoBehaviour
 
     public void TakeDamage(Vector3 point, Quaternion rotation, float dmg)
     {
+        hitSound.PlayDelayed(0.1f);
         CreateBloodEffect(point, rotation);
         health -= dmg;
         healthBar.value = health;
